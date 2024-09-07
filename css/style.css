@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+#buttonsContainer {
+    margin-top: 20px;
+    position: relative; /* Ensure it contains absolutely positioned buttons */
+    height: 80vh; /* Set height so buttons don't overflow the page */
+    /* overflow: hidden; Prevent buttons from going out of the container */
+}
+
+#game-button {
+    height: 5em;
+    width: 10em;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    position: absolute; /* Buttons will now be positioned absolutely within #buttonsContainer */
+}
+
+
