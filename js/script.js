@@ -1,4 +1,5 @@
-// MessageHandler class to handle game messages
+// Declaration: This file was build with the help of ChatGPT.
+
 class MessageHandler {
     constructor() {
         this.messages = messages;
@@ -60,7 +61,6 @@ class GameController {
         this.init();
     }
 
-    // Initialize the game
     init() {
         document.getElementById('submitButton').addEventListener('click', () => {
             const input = document.getElementById('buttonNumber').value;
@@ -68,18 +68,16 @@ class GameController {
         });
     }
 
-    // Start the game by creating buttons and handling validation
     startGame(n) {
         if (isNaN(n) || n < 3 || n > 7) {
             alert(this.messageHandler.getMessage('enter_valid_number'));
             return;
         }
 
-        this.buttonsContainer.innerHTML = '';  // Clear previous buttons
-        this.buttons = [];  // Reset buttons array
+        this.buttonsContainer.innerHTML = '';  
+        this.buttons = [];  
         this.originalOrder = [];
 
-        // Create and display n buttons
         for (let i = 1; i <= n; i++) {
             const color = this.getRandomColor();
             const button = new GameButton(i, color);
@@ -88,10 +86,9 @@ class GameController {
             this.buttonsContainer.appendChild(button.getElement());
         }
 
-        setTimeout(() => this.scrambleButtons(n), n * 1000); // Pause for n seconds before scrambling
+        setTimeout(() => this.scrambleButtons(n), n * 1000); 
     }
 
-    // Generate a random color
     getRandomColor() {
         const letters = '0123456789ABCDEF';
         let color = '#';
@@ -101,7 +98,6 @@ class GameController {
         return color;
     }
 
-    // Scramble buttons n times
     scrambleButtons(n) {
         let scrambleCount = 0;
 
@@ -114,14 +110,13 @@ class GameController {
             scrambleCount++;
             if (scrambleCount >= n) {
                 clearInterval(scrambleInterval);
-                this.hideButtonNumbers();  // Hide numbers after scrambling
-                this.startMemoryGame();    // Start memory game
+                this.hideButtonNumbers();
+                this.startMemoryGame();  
             }
-        }, 2000); // 2 seconds between each scramble
+        }, 2000); 
     }
 
-    // Get random position within window bounds
-    // Get random position within window bounds ensuring buttons stay in view
+    
     getRandomPosition(button) {
         const container = document.getElementById('buttonsContainer');
     
@@ -131,7 +126,6 @@ class GameController {
         const buttonWidth = button.getElement().offsetWidth;
         const buttonHeight = button.getElement().offsetHeight;
     
-        // Ensure the button doesn't exceed the right or bottom edges of the container
         const maxX = containerWidth - buttonWidth;
         const maxY = containerHeight - buttonHeight;
     
@@ -142,12 +136,10 @@ class GameController {
     }
     
 
-    // Hide numbers on all buttons
     hideButtonNumbers() {
         this.buttons.forEach(button => button.hideNumber());
     }
 
-    // Start the memory game
     startMemoryGame() {
         this.currentClickIndex = 0; // Reset the click index
 
@@ -156,23 +148,19 @@ class GameController {
         });
     }
 
-    // Handle button click and check if it matches the original order
     handleButtonClick(button) {
         if (button === this.originalOrder[this.currentClickIndex]) {
             button.showNumber();
             this.currentClickIndex++;
 
-            // If all buttons clicked in correct order
             if (this.currentClickIndex === this.originalOrder.length) {
                 alert(this.messageHandler.getMessage('excellent_memory'));
             }
         } else {
             alert(this.messageHandler.getMessage('wrong_order'));
 
-            // Show the correct order by revealing numbers on all buttons
             this.originalOrder.forEach(btn => btn.showNumber());
 
-            // Disable further clicks after game ends
             this.buttons.forEach(btn => btn.getElement().style.pointerEvents = 'none');
         }
     }

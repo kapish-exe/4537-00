@@ -11,9 +11,8 @@ input {
 
 #buttonsContainer {
     margin-top: 20px;
-    position: relative; /* Ensure it contains absolutely positioned buttons */
-    height: 80vh; /* Set height so buttons don't overflow the page */
-    /* overflow: hidden; Prevent buttons from going out of the container */
+    position: relative; 
+    height: 80vh; 
 }
 
 #game-button {
@@ -23,7 +22,7 @@ input {
     color: white;
     font-size: 1em;
     cursor: pointer;
-    position: absolute; /* Buttons will now be positioned absolutely within #buttonsContainer */
+    position: absolute; 
 }
 
 
